@@ -10,7 +10,7 @@ def home(request):
             pending_city = City(name=place)
             url = f"https://api.openweathermap.org/data/2.5/weather?q={pending_city}&appid=d84ae1a62c6424c03582444686d74930"
             r = requests.get(url).json()
-            if r['main']['temp']:
+            if r.get('main').get('temp'):
                 pending_city.save()
     cities = City.objects.all()
 
