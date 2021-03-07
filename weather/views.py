@@ -1,5 +1,27 @@
 from django.shortcuts import render
+from .models import City
+import requests
 
 # Create your views here.
 def home(request):
-    return render(request, 'index.html')
+    if request.method == "POST":
+        place = request.POST.get('place')
+        if place: City.objects.create(name=place)
+    cities = City.objects.all()
+
+    weather_data = []
+
+    for city in cities:
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={city.name}&appid=d84ae1a62c6424c03582444686d74930"
+        r = requests.get(url).json()
+
+        
+        city_weather = {
+            'city': city.name,
+            'temperature': r['main']['temp'],
+            'description':r['weather'][0]['description'],
+            'icon':r['weather'][0]['icon'],
+        }
+        weather_data.append(city_weather)
+    context = {"weather_data":weather_data}
+    return render(request, 'index.html', context)
