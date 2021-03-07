@@ -6,7 +6,8 @@ import requests
 def home(request):
     if request.method == "POST":
         place = request.POST.get('place')
-        if place: City.objects.create(name=place)
+        if place and not City.objects.filter(name=place):
+            City.objects.create(name=place)
     cities = City.objects.all()
 
     weather_data = []
