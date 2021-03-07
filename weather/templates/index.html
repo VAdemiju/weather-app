@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Weather Anywhere</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <style>
+        body{
+            margin: 0px;
+        }
+        #container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        div.container{
+            width: 70vw;
+            height: 85vh;
+            margin-top: 15px;
+            border-radius: 7px;
+            background-color: rgb(218, 230, 238);
+        }
+        .input{
+            background-color: rgb(210, 228, 236);
+            border-radius: 7px 7px 0px 0px;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+        }
+        .input-text{
+            border: none;
+            padding: 5px;
+            margin-right: 4px;
+            border-radius: 3px;
+            width: 70%;
+        }
+        .places{
+            margin: 10px;
+            padding: 5px;
+        }
+        .submit{
+            background-color: rgb(218, 230, 238);
+            border-radius: 4px;
+            border: 1px solid black;
+        }
+    </style>
+<body>
+    <div id="container">
+        <div class="container">
+            <div>
+                <form class="input">
+                    <input name='place' placeholder="Which city are you rooting for?" class="input-text">
+                    <input type="submit" value="Check" class="submit">
+                </form>
+            </div>
+
+            <div class="places">
+                <div class="place">
+                    <h3>Lagos - sunny</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
