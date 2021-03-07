@@ -27,7 +27,7 @@ SECRET_KEY = '@8#-1l@v)qn()!u=g3-ojo39@#!@v+&!r%5$g_eqf6g7ds1^^3'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'vjay-weather', 'localhost'
+    'vjay-weather.herokuapp.com', 'localhost'
 ]
 
 
