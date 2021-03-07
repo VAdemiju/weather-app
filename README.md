@@ -1,6 +1,7 @@
 # Weather-app
 
 Weather app is a django webapp to get current weather in any place passed by the user
+You can check out a live demo at https://vjay-weather.herokuapp.com
 
 ## Installation
 
