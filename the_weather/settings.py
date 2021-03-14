@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '@8#-1l@v)qn()!u=g3-ojo39@#!@v+&!r%5$g_eqf6g7ds1^^3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'vjay-weather.herokuapp.com', 'localhost'
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     #3rd party apps
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
 
     #Personal apps
     'weather',
@@ -134,3 +136,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+
+
+
+
+
+LOGIN_URL = reverse_lazy('account_login')
+LOGIN_REDIRECT_URL = reverse_lazy('weather:home')

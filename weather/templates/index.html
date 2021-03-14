@@ -22,6 +22,7 @@
 			}
 			.container{
 				margin-top: 10vh;
+				padding-top: 2vh;
                 padding-bottom: 6vh;
 				background: #fff;
 				min-height: 500px;
@@ -54,7 +55,7 @@
                 justify-content: space-between;
                 align-items: center;
 			}
-            .delete-btn{
+            .std-btn{
                 padding: 7px;
 				border-radius: 3px;
 				background: #fff;
@@ -63,11 +64,23 @@
                 text-decoration: None;
                 color: black;
             }
+			.title-login-div{
+				display: flex;
+				justify-content: center;
+				padding: 15px 20px 4px 20px;
+			}
 		</style>
 	</head>
 	<body class="total-container">
 		<div class="container">
-        <h3 style="text-align:center;">Weather app by VJay</h3>
+			<div class="title-login-div">
+        		<span style="text-align:center; font-size:21px; margin-right:22px;">Weather app by VJay</span>
+				{% if user.is_authenticated %}
+            	    <a href="{% url 'account_logout' %}" class="std-btn">LOG OUT</a>
+				{% else %}
+            	    <a href="{% url 'account_login' %}" class="std-btn">LOG IN</a>
+				{% endif %}
+			</div>
 			<div class="search">
 				<form method="post">
 					{% csrf_token %}
@@ -85,7 +98,7 @@
                             <div>{{ city.description }}</div>
                         </div>
                         <div class="">
-                            <a href="{% url 'weather:delete' id=city.obj.id name_slug=city.obj.name_slug %}" class="delete-btn">DELETE</a>
+                            <a href="{% url 'weather:delete' id=city.obj.id name_slug=city.obj.name_slug %}" class="std-btn">DELETE</a>
                         </div>
                     </div>
                 {% endfor %}

@@ -1,17 +1,21 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from .models import City
+from django.contrib.auth.decorators import login_required
 import requests
 
 # Create your views here.
 def home(request):
     if request.method == "POST":
-        place = request.POST.get('place')
-        if place and not City.objects.filter(name=place):
-            pending_city = City(name=place)
-            url = f"https://api.openweathermap.org/data/2.5/weather?q={pending_city}&appid=d84ae1a62c6424c03582444686d74930"
-            r = requests.get(url).json()
-            if r.get('main'):
-                pending_city.save()
+        if request.user.is_authenticated:
+            place = request.POST.get('place')
+            if place and not City.objects.filter(name=place):
+                pending_city = City(name=place)
+                url = f"https://api.openweathermap.org/data/2.5/weather?q={pending_city}&appid=d84ae1a62c6424c03582444686d74930"
+                r = requests.get(url).json()
+                if r.get('main'):
+                    pending_city.save()
+        else: return redirect(reverse('account_login'))
     cities = City.objects.all()
 
     weather_data = []
@@ -33,6 +37,7 @@ def home(request):
 
 
 
+@login_required
 def delete(request, name_slug, id):
     city = City.objects.get(id=id, name_slug=name_slug)
     city.delete()
