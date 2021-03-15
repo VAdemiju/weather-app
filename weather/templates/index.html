@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Vjay ! Weather</title>
+		<title>Vjay | Weather</title>
         <meta charset="UTF-8">
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport' />
 		<style type="text/css">
@@ -76,9 +76,9 @@
 			<div class="title-login-div">
         		<span style="text-align:center; font-size:21px; margin-right:22px;">Weather app by VJay</span>
 				{% if user.is_authenticated %}
-            	    <a href="{% url 'account_logout' %}" class="std-btn">LOG OUT</a>
+            	    <a href="{% url 'account:logout' %}" class="std-btn">LOG OUT</a>
 				{% else %}
-            	    <a href="{% url 'account_login' %}" class="std-btn">LOG IN</a>
+            	    <a href="{% url 'account:login' %}?next={{ request.path }}" class="std-btn">LOG IN</a>
 				{% endif %}
 			</div>
 			<div class="search">

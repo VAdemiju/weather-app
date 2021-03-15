@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sign up for the ultimate weather experience</title>
+        <meta charset="UTF-8">
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport' />
+		<style type="text/css">
+            @media only screen and (min-width: 450px){
+                .container{
+                    width: 400px;
+                }
+            }
+            @media only screen and (min-width: 768px){
+                .container{ width: 600px; }
+            }
+			*{
+				font-family: monospace;
+			}
+			a{
+				color: black;
+			}
+			.total-container{
+				display: flex;
+				justify-content: center;
+			}
+			.container{
+				margin-top: 10vh;
+				padding-top: 2vh;
+                padding-bottom: 6vh;
+				background: #fff;
+				min-height: 450px;
+				border-radius: 4px;
+				box-shadow: 0px 0px 7px black;
+			}
+			.flex-div{
+				display: flex;
+				justify-content: center;
+			}
+			.auth-input-div{
+				display: flex;
+				justify-content: center;
+			}
+			.auth-input{
+				width: 90%;
+				margin: 3px 0px;
+				padding: 10px 7px;
+				border: 0.001px solid black;
+				box-shadow: 0px 0px 3px black;
+			}
+			.auth-submit{
+				margin: 10px 0px;
+				background: #fff;
+				padding: 10px;
+				border: 0.5px solid grey;
+				box-shadow: None;
+				border-radius: 3px;
+				font-weight: bold;
+				background: black;
+				color: white;
+			}
+			.header{
+				font-family: times;
+				display: flex;
+				margin: 20px 30px;
+				justify-content: center;
+			}
+			.auth-form{
+				width: 50vw;
+				min-height: 320px;
+				margin: 7px 15px;
+				padding: 50px 10px 0px 10px;
+				box-shadow: 0px 0px 3px black;
+			}
+		</style>
+	</head>
+	<body class="total-container">
+		<div class="container">
+			<div class="flex-div">
+				<h3 class="header">
+					Sign Up
+				</h3>
+			</div>
+			<div class="flex-div">
+				<form class="auth-form" method="post">
+					{% csrf_token %}
+					<h3 style="text-align:center;">{{ message }}</h3>
+					<div class="auth-input-div"><input class="auth-input" name="email" placeholder="E-mail" required></div>
+					<div class="auth-input-div"><input class="auth-input" name="username" placeholder="Username" required></div>
+					<div class="auth-input-div"><input type="password" name="password" class="auth-input" placeholder="Password" required></div>
+					<div class="auth-input-div"><input type="submit" value="Sign up" class="auth-input auth-submit"></div>
+					<h3 style="text-align:center;">Already have an account? <a href="{% url 'account:login' %}?next={{ next }}">Log in</a></h3>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
