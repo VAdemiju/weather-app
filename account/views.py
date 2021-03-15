@@ -7,7 +7,7 @@ from django.contrib import auth
 def login(request):
     if request.user.is_authenticated:
         return redirect('weather:home')
-    message = ""
+    context = {}
     if request.method == 'POST':
         login = request.POST['login']
         password = request.POST['password']
@@ -19,8 +19,8 @@ def login(request):
             auth.login(request, user)
             return redirect(request.GET.get('next'))
         else: message = "Please fill in all fields correctly!"
-
-    return render(request, 'account/login.html', {'next':request.GET.get('next'), 'message':message})
+    context = {'next':request.GET.get('next'), 'message':message}
+    return render(request, 'account/login.html', context)
 
 
 def signup(request):
