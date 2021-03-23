@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '@8#-1l@v)qn()!u=g3-ojo39@#!@v+&!r%5$g_eqf6g7ds1^^3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'vjay-weather.herokuapp.com', 'localhost'
