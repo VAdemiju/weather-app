@@ -145,5 +145,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 
-LOGIN_URL = reverse_lazy('account_login')
+LOGIN_URL = reverse_lazy('account:login')
 LOGIN_REDIRECT_URL = reverse_lazy('weather:home')

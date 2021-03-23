@@ -73,22 +73,34 @@
 			}
 		</style>
 	</head>
-	<body class="total-container">
-		<div class="container">
-			<div class="flex-div">
-				<h3 class="header">
-					Log In
-				</h3>
+	<body>
+		{% if not user.is_authenticated %}
+		<div class="total-container">
+			<div style="max-width:500px;">
+				<p>For testing purposes, you can log in with the following demo credentials:</p>
+				<p>Username: <span style="font-family:cursive">VJay</span></p>
+				<p>Email: <span style="font-family:cursive">weatherapp@gmail.com</span></p>
+				<p>Password: <span style="font-family:cursive">weatherapp</span></p>
 			</div>
-			<div class="flex-div">
-				<form class="auth-form" method="post">
-					{% csrf_token %}
-					<h3 style="text-align:center;">{{ message }}</h3>
-					<div class="auth-input-div"><input class="auth-input" placeholder="Username or email" required name='login'></div>
-					<div class="auth-input-div"><input type="password" class="auth-input" placeholder="Password" name="password" required></div>
-					<div class="auth-input-div"><input type="submit" value="Login" class="auth-input auth-submit"></div>
-					<h3 style="text-align:center;">Don't have an account yet? <a href="{% url 'account:signup' %}?next={{ next }}">Sign up</a></h3>
-				</form>
+		</div>
+		{% endif %}
+		<div class="total-container">
+			<div class="container">
+				<div class="flex-div">
+					<h3 class="header">
+						Log In
+					</h3>
+				</div>
+				<div class="flex-div">
+					<form class="auth-form" action="{% url 'account:login' %}?next={{ next }}" method="post">
+						{% csrf_token %}
+						<h3 style="text-align:center;">{{ message }}</h3>
+						<div class="auth-input-div"><input class="auth-input" placeholder="Username or email" required name='login'></div>
+						<div class="auth-input-div"><input type="password" class="auth-input" placeholder="Password" name="password" required></div>
+						<div class="auth-input-div"><input type="submit" value="Login" class="auth-input auth-submit"></div>
+						<h3 style="text-align:center;">Don't have an account yet? <a href="{% url 'account:signup' %}?next={{ next }}">Sign up</a></h3>
+					</form>
+				</div>
 			</div>
 		</div>
 	</body>

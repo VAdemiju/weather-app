@@ -71,37 +71,49 @@
 			}
 		</style>
 	</head>
-	<body class="total-container">
-		<div class="container">
-			<div class="title-login-div">
-        		<span style="text-align:center; font-size:21px; margin-right:22px;">Weather app by VJay</span>
-				{% if user.is_authenticated %}
-            	    <a href="{% url 'account:logout' %}" class="std-btn">LOG OUT</a>
-				{% else %}
-            	    <a href="{% url 'account:login' %}?next={{ request.path }}" class="std-btn">LOG IN</a>
-				{% endif %}
+	<body>
+		{% if not user.is_authenticated %}
+		<div class="total-container">
+			<div style="max-width:500px;">
+				<p>For testing purposes, you can log in with the following demo credentials:</p>
+				<p>Username: <span style="font-family:cursive">VJay</span></p>
+				<p>Email: <span style="font-family:cursive">weatherapp@gmail.com</span></p>
+				<p>Password: <span style="font-family:cursive">weatherapp</span></p>
 			</div>
-			<div class="search">
-				<form method="post">
-					{% csrf_token %}
-					<input class="search-box" placeholder="Type in a city" name='place' value="">
-					<input type="submit" value="Add" class="submit">
-				</form>
-			</div>
-			<div>
-				{% for city in weather_data %}
-                    <div class="box">
-                        <div class="">
-                            <img src="https://openweathermap.org/img/w/{{ city.icon }}.png" alt="image">
-                            <h3>{{ city.city }}</h3>
-                            <div>{{ city.temperature }}</div>
-                            <div>{{ city.description }}</div>
-                        </div>
-                        <div class="">
-                            <a href="{% url 'weather:delete' id=city.obj.id name_slug=city.obj.name_slug %}" class="std-btn">DELETE</a>
-                        </div>
-                    </div>
-                {% endfor %}
+		</div>
+		{% endif %}
+		<div class="total-container">
+			<div class="container">
+				<div class="title-login-div">
+					<span style="text-align:center; font-size:21px; margin-right:22px;">Weather app by VJay</span>
+					{% if user.is_authenticated %}
+						<a href="{% url 'account:logout' %}" class="std-btn">LOG OUT</a>
+					{% else %}
+						<a href="{% url 'account:login' %}?next={{ request.path }}" class="std-btn">LOG IN</a>
+					{% endif %}
+				</div>
+				<div class="search">
+					<form method="post">
+						{% csrf_token %}
+						<input class="search-box" placeholder="Type in a city" name='place' value="">
+						<input type="submit" value="Add" class="submit">
+					</form>
+				</div>
+				<div>
+					{% for city in weather_data %}
+						<div class="box">
+							<div class="">
+								<img src="https://openweathermap.org/img/w/{{ city.icon }}.png" alt="image">
+								<h3>{{ city.city }}</h3>
+								<div>{{ city.temperature }}</div>
+								<div>{{ city.description }}</div>
+							</div>
+							<div class="">
+								<a href="{% url 'weather:delete' id=city.obj.id name_slug=city.obj.name_slug %}" class="std-btn">DELETE</a>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
 			</div>
 		</div>
 	</body>

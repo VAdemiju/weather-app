@@ -9,14 +9,16 @@ def home(request):
     if request.method == "POST":
         if request.user.is_authenticated:
             place = request.POST.get('place')
-            if place and not City.objects.filter(name=place):
-                pending_city = City(name=place)
+            if place and not City.objects.filter(name=place, user=request.user):
+                pending_city = City(name=place, user=request.user)
                 url = f"https://api.openweathermap.org/data/2.5/weather?q={pending_city}&appid=d84ae1a62c6424c03582444686d74930"
                 r = requests.get(url).json()
                 if r.get('main'):
                     pending_city.save()
-        else: return redirect(reverse('account_login'))
-    cities = City.objects.all()
+        else: return redirect(reverse('account:login'))
+    if request.user.is_authenticated:
+        cities = City.objects.filter(user=request.user)
+    else: cities = City.objects.all()[:5]
 
     weather_data = []
 
