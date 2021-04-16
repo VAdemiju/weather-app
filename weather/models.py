@@ -3,10 +3,6 @@ from django.utils.text import slugify
 from django.contrib.auth.models import User
 
 # Create your models here.
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 class City(models.Model):
     name = models.CharField(max_length=25)
     name_slug = models.SlugField(max_length=35)
@@ -21,10 +17,3 @@ class City(models.Model):
     
     def __str__(self):
         return self.name
-    
-=======
->>>>>>> parent of 5696d89 (Updated the weather app)
-=======
->>>>>>> parent of 5696d89 (Updated the weather app)
-=======
->>>>>>> parent of 5696d89 (Updated the weather app)
