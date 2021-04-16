@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import City
@@ -47,24 +45,3 @@ def delete(request, name_slug, id):
     city = City.objects.get(id=id, name_slug=name_slug)
     city.delete()
     return redirect("weather:home")
-=======
-from django.shortcuts import render
-
-# Create your views here.
-def home(request):
-    return render(request, 'index.html')
->>>>>>> parent of 5696d89 (Updated the weather app)
-=======
-from django.shortcuts import render
-
-# Create your views here.
-def home(request):
-    return render(request, 'index.html')
->>>>>>> parent of 5696d89 (Updated the weather app)
-=======
-from django.shortcuts import render
-
-# Create your views here.
-def home(request):
-    return render(request, 'index.html')
->>>>>>> parent of 5696d89 (Updated the weather app)
