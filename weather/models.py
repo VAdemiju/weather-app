@@ -3,6 +3,7 @@ from django.utils.text import slugify
 from django.contrib.auth.models import User
 
 # Create your models here.
+<<<<<<< HEAD
 
 class City(models.Model):
     name = models.CharField(max_length=25)
@@ -19,3 +20,5 @@ class City(models.Model):
     def __str__(self):
         return self.name
     
+=======
+>>>>>>> parent of 5696d89 (Updated the weather app)

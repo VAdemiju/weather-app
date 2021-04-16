@@ -1,2 +1,7 @@
 env
+<<<<<<< HEAD
 *.__pycache__
+=======
+*.__pycache__*
+db.sqlite3
+>>>>>>> parent of 5696d89 (Updated the weather app)
